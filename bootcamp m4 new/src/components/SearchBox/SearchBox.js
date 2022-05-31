@@ -1,13 +1,15 @@
 import React from 'react';
 import './SearchBox.css';
 
-const SearchBox = ({setSearchValue,searchValue,  setDataval }) => {
-  
-    
-    // searchBoxSubmitHandler = (e) => {
-    //     e.preventDefault();
-    // }
- 
+const SearchBox = ({ setSearchValue, searchValue, setDataval }) => {
+
+
+    const searchBoxSubmitHandler = (e) => {
+        e.preventDefault();
+        setSearchValue(e.target.value)
+    }
+
+
     // searchLineChangeHandler = (e) => {
     //     props.searchValue.setState({
     //         props.setSearchValue(e.target.value)
@@ -25,10 +27,11 @@ const SearchBox = ({setSearchValue,searchValue,  setDataval }) => {
                         type="text"
                         className="search-box__form-input"
                         placeholder="Например, Shawshank Redemption"
-                        // onChange={this.searchLineChangeHandler}
-                        onChange ={(event) =>  {
-                             
-                        setSearchValue(event.target.value)}}
+                        onChange={searchBoxSubmitHandler}
+                    // onChange ={(event) =>  {
+                    // event.preventDefault();
+                    // setSearchValue(searchValue)
+                    // }}
                     // onChange={this.searchMovie}
                     />
                 </label>
@@ -36,9 +39,10 @@ const SearchBox = ({setSearchValue,searchValue,  setDataval }) => {
                     type="submit"
                     className="search-box__form-submit"
                     onClick={(event) => {
-                        event.preventDefault() 
-                        setDataval( searchValue)}}
-                // disabled={!searchLine}
+                        event.preventDefault()
+                        setDataval(searchValue)
+                    }}
+                    disabled={!searchValue}
                 >
                     Искать
                 </button>
